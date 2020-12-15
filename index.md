@@ -21,10 +21,12 @@ As data varies widely in its shape and form, a first crucial step when employing
 explain how rocauc curves work here 
 
 ### No Feature Selection
+<img src="./imgs/roc_no_fs.png"> </div>
 
 ### Online Feature Selection (Recursive Feature Elimination)
 
 ### Offline Feature Selection (Anova & Chi)
+<img src="./imgs/roc_off_fs.png"> </div>
 
 ## The value of interpretable models 
 
