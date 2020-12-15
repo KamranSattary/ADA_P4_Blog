@@ -20,7 +20,22 @@ As data varies widely in its shape and form, a first crucial step when employing
 ## Comparing Model Performance with Roc-Auc Curves
 explain how rocauc curves work here 
 
-### No feature selection
+### No Feature Selection
 
-<img src="imgs/BRF_FI.png"> </div>
+### Online Feature Selection (Recursive Feature Elimination)
+
+### Offline Feature Selection (Anova & Chi)
+
+## The value of interpretable models 
+
+### Random Forest
+<img src="./imgs/BRF_FI.png"> </div>
+
+### Boosted Decision Trees
+
+## Wrapping Up
+
+To sum up, ... 
+
+Thank you for reading our blog! 
 
