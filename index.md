@@ -23,6 +23,7 @@ explain how rocauc curves work here
 <div> <img src="./imgs/roc_no_fs.png"> </div>
 
 ### Online Feature Selection (Recursive Feature Elimination)
+<div> <img src="./imgs/roc_on_fs.png"> </div>
 
 ### Offline Feature Selection (Anova & Chi)
 <div> <img src="./imgs/roc_off_fs.png"> </div>
