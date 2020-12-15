@@ -7,13 +7,14 @@ In similar fashion as [Muchlinski et al., 2016](http://davidsiroky.faculty.asu.e
 ### Understanding the inner-workings of Classification Methods 
 As data varies widely in its shape and form, a first crucial step when employing statistical models, is understanding in depth how they are constructed and are able to use data to *learn*. Here we clarify how the five models we compare function in order to better understand their strengths, but also weaknesses!
 
-#### K-Nearest Neighbors
+## K-Nearest Neighbors
+testing latex $h_\theta(x) = \Large\frac{1}{1 + \mathcal{e}^{(-\theta^\top x)}}$ 
 
-####
+### 
 
 ### Comparing Model Performance with Roc-Auc Curves
 
-#### No feature selection
+### No feature selection
 
 ### Markdown
 
