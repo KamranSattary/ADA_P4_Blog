@@ -22,8 +22,5 @@ explain how rocauc curves work here
 
 ### No feature selection
 
-<object data="https://github.com/KamranSattary/ADA_P4_Blog/blob/gh-pages/imgs/roc_no_fs.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://github.com/KamranSattary/ADA_P4_Blog/blob/gh-pages/imgs/roc_no_fs.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+<img src="imgs/BRF_FI.png"> </div>
+
