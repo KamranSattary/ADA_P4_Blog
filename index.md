@@ -38,11 +38,13 @@ So far, we have discussed the necessity of including pre-processing methods to t
 
 Okay, so enough about their benefits. How do we actually select these features to include or exclude? Surely this is not an arbitrary choice! Truth be told, too many approaches exist towards this to all feature inside this blog. Therefore, we select an online and offline feature selection method which we depict below, the first denoting the online interaction with the model in selecting the features, while the second denotes independent feature-selection without any model interplay. This, in combination with the more illustrious do-no-feature-selection approach, should serve to paint a picture of their contrasting effects and interplay with statistical models.
 
-#### Recursive Feature Elimination
+### Recursive Feature Elimination
 ?
 
-#### Chi & ANOVA
+### Chi & ANOVA
 ?
+
+### Grid Search
 
 ## Understanding the inner-workings of Classification Methods 
 As data varies widely in its shape and form, a first crucial step when employing statistical models, is understanding in depth how they are constructed and are able to use data to *learn*. Here we clarify how the five models we compare function in order to better understand their strengths, but also weaknesses!
