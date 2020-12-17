@@ -64,9 +64,10 @@ pipe_svm = Pipeline([('std', my_std),('rfe', rfe),('clf', my_svm)])
 ```
 
 ### Chi & ANOVA
-?
+razvan
 
 ### Grid Search
+kamran
 
 ## Understanding the inner-workings of Classification Methods 
 As data varies widely in its shape and form, a first crucial step when employing statistical models, is understanding in depth how they are constructed and are able to use data to *learn*. Here we clarify how the five models we compare function in order to better understand their strengths, but also weaknesses!
@@ -81,7 +82,7 @@ from sklearn.neighbors import KNeighborsClassifier
 # initialise it
 nearest_neighbors = KNeighborsClassifier()
 ```
-
+kamran
 ### Support Vector Machines
 
 ```python
@@ -91,7 +92,7 @@ from sklearn.svm import SVC
 # Define our two steps and pass them into the pipeline
 my_svm = SVC() 
 ```
-
+kamran
 ### Random Forests
 
 ```python
@@ -103,9 +104,9 @@ from sklearn.ensemble import RandomForestClassifier
 balanced_random_forest = BalancedRandomForestClassifier(sampling_strategy = 1/2) # note the ability for integrated downsampling!
 random_forest = RandomForestClassifier()
 ```
-
+kamran
 ### Boosted Decision Trees
-
+Loic
 ```python
 # import decision tree classifier and booster classifier
 from sklearn.ensemble import AdaBoostClassifier
@@ -116,29 +117,30 @@ boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifi
 ```
 
 ### Neural Networks
-
+Razvan
 ## Comparing Model Performance with Roc-Auc Curves
 explain how rocauc curves work here 
-
+kamran
 ### No Feature Selection
 In this part, we observe the 
 <div> <img src="./imgs/roc_no_fs.png"> </div>
-
+kamran
 ### Online Feature Selection (Recursive Feature Elimination)
 <div> <img src="./imgs/roc_on_fs.png"> </div>
-
+loic
 ### Offline Feature Selection (Anova & Chi)
 <div> <img src="./imgs/roc_off_fs.png"> </div>
-
+razvan
 ## The value of interpretable models 
-
+Loic
 ### Random Forest
+Loic
 <div> <img src="./imgs/BRF_FI.png"> </div>
 
 ### Boosted Decision Trees
-
+Loic
 ## Wrapping Up
-
+someone please conclude
 To sum up, ... 
 
 Thank you for reading our blog! 
