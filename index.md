@@ -121,6 +121,7 @@ boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifi
 explain how rocauc curves work here 
 
 ### No Feature Selection
+In this part, we observe the 
 <div> <img src="./imgs/roc_no_fs.png"> </div>
 
 ### Online Feature Selection (Recursive Feature Elimination)
