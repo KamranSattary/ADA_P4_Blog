@@ -52,11 +52,46 @@ As data varies widely in its shape and form, a first crucial step when employing
 ### K-Nearest Neighbors
 K-Nearest Neighbors (abbreviated KNN) is a supervised machine learning technique which, as its name suggests, uses closeby neighbors to classify observations. As such, the data itself serves in essence as the model, with few parameters available for tuning, which can both be a boon or bane. Evaluating proximity is one of the first available parameters, and allowing for a variety of metrics to evaluate the distance between observations, including Manhattan Distance, Euclidean Distance, Chebychev Distance, Hamming Distance, Cosine Similarity (utilizing Cosine distance), and more. Each of these presents both advantages and disadvantages in their use, with some more or less sensitive to outliers, while others are orientation rather than magnitude based such as Cosine Distance which is preferred in settings where direction is more influential than magnitude. 
 
+```python
+# import classifier
+from sklearn.neighbors import KNeighborsClassifier
+
+# initialise it
+nearest_neighbors = KNeighborsClassifier(random_state=0)
+```
+
 ### Support Vector Machines
+
+```python
+# Import support vector machine classifier 
+from sklearn.svm import SVC
+
+# Define our two steps and pass them into the pipeline
+my_svm = SVC(random_state = 0) 
+```
 
 ### Random Forests
 
+```python
+# import both random forest classifiers
+from imblearn.ensemble import BalancedRandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# initialise classifiers ready to be incorporated in pipelines 
+balanced_random_forest = BalancedRandomForestClassifier(random_state = 0, sampling_strategy = 1/2) # note the ability for integrated downsampling!
+random_forest = RandomForestClassifier(random_state=0)
+```
+
 ### Boosted Decision Trees
+
+```python
+# import decision tree classifier and booster classifier
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+# initialise boosted decision tree
+boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifier(), random_state = 0)
+```
 
 ### Neural Networks
 
