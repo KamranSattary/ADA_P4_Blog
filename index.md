@@ -57,7 +57,7 @@ K-Nearest Neighbors (abbreviated KNN) is a supervised machine learning technique
 from sklearn.neighbors import KNeighborsClassifier
 
 # initialise it
-nearest_neighbors = KNeighborsClassifier(random_state=0)
+nearest_neighbors = KNeighborsClassifier()
 ```
 
 ### Support Vector Machines
@@ -67,7 +67,7 @@ nearest_neighbors = KNeighborsClassifier(random_state=0)
 from sklearn.svm import SVC
 
 # Define our two steps and pass them into the pipeline
-my_svm = SVC(random_state = 0) 
+my_svm = SVC() 
 ```
 
 ### Random Forests
@@ -78,8 +78,8 @@ from imblearn.ensemble import BalancedRandomForestClassifier
 from sklearn.ensemble import RandomForestClassifier
 
 # initialise classifiers ready to be incorporated in pipelines 
-balanced_random_forest = BalancedRandomForestClassifier(random_state = 0, sampling_strategy = 1/2) # note the ability for integrated downsampling!
-random_forest = RandomForestClassifier(random_state=0)
+balanced_random_forest = BalancedRandomForestClassifier(sampling_strategy = 1/2) # note the ability for integrated downsampling!
+random_forest = RandomForestClassifier()
 ```
 
 ### Boosted Decision Trees
@@ -90,7 +90,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 
 # initialise boosted decision tree
-boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifier(), random_state = 0)
+boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifier())
 ```
 
 ### Neural Networks
