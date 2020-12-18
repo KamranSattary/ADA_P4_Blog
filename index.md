@@ -406,8 +406,10 @@ The wrapper provides the model with the same API, or at very least a compatible 
 
 
 ## Comparing Model Performance with Roc-Auc Curves
-explain how rocauc curves work here 
-kamran
+## Comparing Model Performance with Roc-Auc Curves
+In this section, we present our methodology, having introduced the workings of the multiplicity of the methods employed, to compare each of our methods predictive ability when faced with imbalanced data. For each of these models, we perform a grid search on a subset of their parameters to allow them to best perform. For K-Nearest Neighbors this includes a variety of kernels, degrees in the case of the polynomial one, and distances provided by `scikit-learn`'s classifier. Meanwhile for Random Forests, these are an entirely new set of parameters to search upon, namely the maximal depth, the downsampling strategy, and the number of constituent trees. This approach was adopted towards all models in order to let them best perform in their comparisons, and this hyperparameter optimization remains a shortcoming of Muchlinski et. al which we proposed a solution for, with our above example of GridSearchCV usage.
+
+In order to compare model performance, we employ Roc-Auc Curves, although judiciously rightfully, there exists possible critique that an F1-score comparison would perhaps be more suited to this class imbalanced problem, we would like to build upon the cross-model performances of Muchlinski et. al, Figure 2. This Roc-Auc Curve concept is straightforward to understand however which provides benefits to compare across models, as one may conceptually perceive it as the predictive ability of a binary classification system when its prediction threshold is varied. Thus, it shows on the x-axis the False Positive Rate, and the y-axis the True Positive Rates, and the diagonal 45 degree line indicates the commonly called chance, as it represents if the model predicted purely by chance.
 ### No Feature Selection
 In this part, we observe the 
 <div> <img src="./imgs/roc_no_fs.png"> </div>
