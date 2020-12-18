@@ -411,6 +411,7 @@ As a result, we see here that for really simple models (such as K-Nearest Neighb
 ### Offline Feature Selection (Anova & Chi)
 <div> <img src="./imgs/roc_off_fs.png"> </div>
 razvan
+
 ## The value of interpretable models 
 
 Sometimes, models are sought not only for their predictive power, but also for their interpretability. This is especially true in certain domains where a humanly understandable justification is required. Here, it is the case as the goal is to give tools to governers to prevent Civil War from happening. These tools should not only tell the politics if a Civil War is likely to happen (predictive power), but also on what to focus/act (interpretability).
@@ -418,8 +419,22 @@ Sometimes, models are sought not only for their predictive power, but also for t
 Here, we will shed light on Balanced Random Forest and Boosted Decision Tree's interpretability by using a method to rank Variables Importances using a metric called Gini Importance, being the (normalized) total reduction of the criterion brought by that feature. In short, the more the feature seperates well the data (most 0's on one side, most 1's on the other side), the higher the Gini importance. 
 
 ### Random Forest
-Loic
+
 <div> <img src="./imgs/BRF_FI.png"> </div>
+
+Here, we plotted the Balanced Random Forest Feature Importances. On the y-axis are the features sorted by rank (at top being the most important features) and on the x-axis is their respective Mean Importance. Around each point, we plotted an error bar equal in length to two $\sigma$ with sigma being the standard deviation of the Gini Importance.
+
+Here is the top 4 features:
+- `sxpsq`: Primary commodity exports/GPD,squared, 
+- `sxpnew`: Primary commodity exports/GPD, 
+- `agexp`: Agricultural raw materials exports as percentage of merchandise exports; WDI, 
+- `illiteracy`: % adult population illiterate; WDI
+
+It is interesting to see that these top 4 features are well seperated from others (errors bars are not superposing with the errors bars of the 5th and lower ranked features). Knowing that `sxpsq`and is only `sxpnew` squared, we have managed to shed light on the 3 main features that influence Civil War Onset by the largest amount... or did we?
+
+Because these features are important in the Random Forest model to classify the samples doesn't necessarily mean that these features are important in real life in Civil War Onsets. For instance, really meaningful features explaining Civil War Onsets could be missing because not considered in the data (for instance because it has been overlooked) and as a result the models over-estimate the importance of the other features. Furthermore, this ranking might be heavily influenced by how the Random Forest is inherently built, which has nothing to do how real Civil War Onsets work.
+
+This is why any conclusions regarding 'the most important features in Civil War Onsets' should be taken with a grain of salt. For now, the only thing we can assert is that for predicting Civil War Onsets using RF, these 3 features are the most useful, not more. Further investigations using experts are needed to expand this to the real world.
 
 ### Boosted Decision Trees
 Loic
