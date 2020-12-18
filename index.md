@@ -120,13 +120,13 @@ boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifi
 
 Deep learning has seen a huge boost in popularity in the recent years not only in the scientific comunity, but in the mainstream as well. The main applications that contributed to its success are computer vision, where self driving cars have seen a huge mediatic attention and natural language processing(NLP) that reached the audience in terms of voice assistants. The building block that stays at the foundation of this domain is the neural network, but what exactly are these?
 
-Artificial Neural Networks(abbreviated ANN) or usually simply Neural Networks(NN) is another machine learning technique that can be trained in supervised or unsupervised manner and as the name suggests was inspired by the network of neurons from mammal's brain, more specifically, the human brain. The terms is not new, dating back to 1940s, but the advancement in GPU provided reasearchers with the ability to train more complex models.
+Artificial Neural Networks(abbreviated ANN) or usually simply Neural Networks(NN) is another machine learning technique that can be trained in supervised or unsupervised manner and as the name suggests was inspired by the network of neurons from mammals' brains, more specifically, the human brain. The terms is not new, dating back to 1940s, but the advancement in GPU has provided reasearchers with the ability to train more complex models.
 
-Let's dive deeper into the subject. Neural networks are multi-layer networks of neurons. Bellow we can see a network used for classification and one for regression.
+Let's dive deeper into the subject. Neural networks are multi-layer networks of neurons. Below we can see a network used for classification and one for regression.
 
 
 <figure align="center">
-  <img src="./imgs/mlp.png"/>
+  <img src="./imgs/multilayerperceptron_network.png"/>
   <figcaption align="center">One hidden layer MLP | Source: https://scikit-learn.org/stable/modules/neural_networks_supervised.html</figcaption>
 </figure>
 
