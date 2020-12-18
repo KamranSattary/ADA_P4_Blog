@@ -117,7 +117,82 @@ boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifi
 ```
 
 ### Neural Networks
-Razvan
+
+Deep learning has seen a huge boost in popularity in the recent years not only in the scientific comunity, but in the mainstream as well. The main applications that contributed to its success are computer vision, where self driving cars have seen a huge mediatic attention and natural language processing(NLP) that reached the audience in terms of voice assistants. The building block that stays at the foundation of this domain is the neural network, but what exactly are these?
+
+Artificial Neural Networks(abbreviated ANN) or usually simply Neural Networks(NN) is another machine learning technique that can be trained in supervised or unsupervised manner and as the name suggests was inspired by the network of neurons from mammal's brain, more specifically, the human brain. The terms is not new, dating back to 1940s, but the advancement in GPU provided reasearchers with the ability to train more complex models.
+
+Let's dive deeper into the subject. Neural networks are multi-layer networks of neurons. Bellow we can see a network used for classification and one for regression.
+
+
+<figure align="center">
+  <img src="./imgs/mlp.png"/>
+  <figcaption align="center">One hidden layer MLP | Source: https://scikit-learn.org/stable/modules/neural_networks_supervised.html</figcaption>
+</figure>
+
+Let's analyse its structure, from left to right:
+
+1. The first layer is called **input layer**
+2. First *hidden layer*
+3. Second *hidden layer*
+4. The last layer that produce the prediction is called **output** layer
+
+The connection between neurons is represented by arrows and indicates the normal flow, during prediction, of the data through the network, from the input layer throught tha output layer. During the training process there is one step called backpropagation when the flow is reversed and the weights associated to each arrow is updated and the actual learning takes place.
+
+Our model has 2 inputs and a two neurons hidden layer. As such, connecting Input Layer to Hidden Layer 1 requires 4 connections. The mathematical expression of first neuron in the first layer is the following:
+
+$$ Z_1 = W_1 I_1 + W_2 I_+2 + W_2 I_+ b_1
+\\
+\text{Neuron 1 activation(output)} = sigmoid(Z_1) $$
+
+We can use the matrix notation for the Hidden Layer 1:
+
+
+$$\begin{pmatrix} W_{11} &W_{21}\\ W_{12} &W_{21}\end{pmatrix} \begin{pmatrix} X_1\\ X_2\end{pmatrix} + \begin{pmatrix} b_1\\ b_2\end{pmatrix} =\begin{pmatrix} Z_1\\ Z_2\end{pmatrix}$$
+
+To generalize, any layer in the network can be described by:
+ 
+$$\begin{bmatrix}X\end{bmatrix}\begin{bmatrix}W\end{bmatrix}=\begin{bmatrix}Z\end{bmatrix}$$
+
+### Learning process
+
+The learning process for neural networks is very similar to many other models from the data science world - we define a **cost function** and use *gradient descent* optimization to minimize the loss(cost function value). However, the process is more complicated than let's say, linear regression, where the coefficents are toggled in isolation because changing one weight/bias will influence the the following layers.
+
+### Gradient descent
+Gradient descent is a iterative algorithm used to find the optimal values for its parameters. It starts from an initial set of values and updates them according to the loss and the user-defined learning rate.
+
+* Start from initial values
+
+* Calculate cost and gradient
+
+* Update each parameter in the opposite direction of its gradient proportional to its value
+
+* Recompute the cost and gradient until the minimum is reached or the loss is considered small enough
+
+In mathematical notation:
+
+$$\textbf{X}  = \textbf{X} - lr * \frac{\partial}{\partial \textbf{X}} f(\textbf{X})$$
+
+The gradient of a function is calculated by:
+
+$$ \frac{\partial f}{\partial \textbf{X}} = \begin{bmatrix}\frac{\partial f}{\partial X_1}, .., \frac{\partial f}{\partial X_n}\end{bmatrix} $$
+
+### BAckpropagation
+
+The derivative in a neural network is not so easy to achieve because it would imply lots of recomputations. Backpropagation solves the problem by applying the chain rule when it calculates the gradient of the loss function. It iterates backwards, from the last layer, one layer at a time avoiding redundant calculations.
+
+ As an example let's consider a perceptron(no hidden layer) with MSE as the cost function. Then using the cahin rule:
+
+$$  \frac{\partial Error}{\partial w} = \frac{\partial Error}{\partial out} \frac{\partial out}{\partial in} \frac{\partial in}{\partial w}$$
+
+$$\frac{\partial Error}{\partial out} = \frac{\partial}{\partial out}(\frac{1}{2} (target - out)^2) = (\frac{1}{2} * 2 * (target - out)) \frac{\partial}{\partial out}(target - out) = out - target$$
+
+$$\frac{\partial in}{\partial w} = \frac{\partial (w_1i_1 + ... + w_n*i_n)}{\partial w} = input$$
+
+$$ \frac{\partial out}{\partial in} = \frac{\partial }{\partial in}\frac{1}{1 + e^{-in}} = \frac{e^{-in}}{(1 + e^{-in})^2} =  \frac{1}{1 + e^{-in}}  \left( 1 - \frac{1}{1 + e^{-in}} \right) = out * (1 - out) $$
+
+### Implementation
+
 ## Comparing Model Performance with Roc-Auc Curves
 explain how rocauc curves work here 
 kamran
@@ -144,4 +219,3 @@ someone please conclude
 To sum up, ... 
 
 Thank you for reading our blog! 
-
