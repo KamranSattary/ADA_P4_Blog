@@ -199,7 +199,7 @@ K-Nearest Neighbors (abbreviated KNN) is a supervised machine learning technique
 
 <figure align="center">
   <img src="./imgs/knn.png"/>
-  <figcaption align="center">KNN Illustration | <pre> <a href="https://www.datacamp.com/community/tutorials/k-nearest-neighbor-classification-scikit-learn">Source</a></pre>
+  <figcaption align="center">KNN Illustration | Source: "https://www.datacamp.com/community/tutorials/k-nearest-neighbor-classification-scikit-learn"
   </figcaption>
 </figure>
 
@@ -221,7 +221,7 @@ Support Vector Machines were included in this blog for the very reason that they
 
 <figure align="center">
   <img src="./imgs/svm.png"/>
-  <figcaption align="center">KNN Illustration | [Source](https://towardsdatascience.com/support-vector-machine-simply-explained-fee28eba5496)</figcaption>
+  <figcaption align="center">KNN Illustration | Source: https://towardsdatascience.com/support-vector-machine-simply-explained-fee28eba5496</figcaption>
 </figure>
 
 Above is illustrated the general concept surrounding Support Vector Machines. This algorithm constructs support vectors (hence the name), which each aim to support the widest margin possible between classes in a resulting hyperplane. This maximisation of the margin is not motivated in the same way in contrast with the logistic regression although a separating line does conceedingly allow for the aforementioned confusion.
