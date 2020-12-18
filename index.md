@@ -141,18 +141,15 @@ The connection between neurons is represented by arrows and indicates the normal
 
 Our model has 2 inputs and a two neurons hidden layer. As such, connecting Input Layer to Hidden Layer 1 requires 4 connections. The mathematical expression of first neuron in the first layer is the following:
 
-$$ Z_1 = W_1 I_1 + W_2 I_+2 + W_2 I_+ b_1
-\\
-\text{Neuron 1 activation(output)} = sigmoid(Z_1) $$
+<div style="text-align:center"><img src="./imgs/latex1.png"></div>
 
 We can use the matrix notation for the Hidden Layer 1:
 
-
-$$\begin{pmatrix} W_{11} &W_{21}\\ W_{12} &W_{21}\end{pmatrix} \begin{pmatrix} X_1\\ X_2\end{pmatrix} + \begin{pmatrix} b_1\\ b_2\end{pmatrix} =\begin{pmatrix} Z_1\\ Z_2\end{pmatrix}$$
+<div style="text-align:center"><img src="./imgs/latex2.png"></div>
 
 To generalize, any layer in the network can be described by:
  
-$$\begin{bmatrix}X\end{bmatrix}\begin{bmatrix}W\end{bmatrix}=\begin{bmatrix}Z\end{bmatrix}$$
+<div style="text-align:center"><img src="./imgs/latex3.png"></div>
 
 ### Learning process
 
@@ -171,11 +168,11 @@ Gradient descent is a iterative algorithm used to find the optimal values for it
 
 In mathematical notation:
 
-$$\textbf{X}  = \textbf{X} - lr * \frac{\partial}{\partial \textbf{X}} f(\textbf{X})$$
+<div style="text-align:center"><img src="./imgs/latex4.png"></div>
 
 The gradient of a function is calculated by:
 
-$$ \frac{\partial f}{\partial \textbf{X}} = \begin{bmatrix}\frac{\partial f}{\partial X_1}, .., \frac{\partial f}{\partial X_n}\end{bmatrix} $$
+<div style="text-align:center"><img src="./imgs/latex5.png"></div>
 
 ### Backpropagation
 
@@ -183,13 +180,13 @@ The derivative in a neural network is not always so easy at first glance to opti
 
  As an example let's consider a perceptron(no hidden layer) with MSE as the cost function. Then using the cahin rule:
 
-$$  \frac{\partial Error}{\partial w} = \frac{\partial Error}{\partial out} \frac{\partial out}{\partial in} \frac{\partial in}{\partial w}$$
+<div style="text-align:center"><img src="./imgs/latex6.png"></div>
 
-$$\frac{\partial Error}{\partial out} = \frac{\partial}{\partial out}(\frac{1}{2} (target - out)^2) = (\frac{1}{2} * 2 * (target - out)) \frac{\partial}{\partial out}(target - out) = out - target$$
+<div style="text-align:center"><img src="./imgs/latex7.png"></div>
 
-$$\frac{\partial in}{\partial w} = \frac{\partial (w_1i_1 + ... + w_n*i_n)}{\partial w} = input$$
+<div style="text-align:center"><img src="./imgs/latex8.png"></div>
 
-$$ \frac{\partial out}{\partial in} = \frac{\partial }{\partial in}\frac{1}{1 + e^{-in}} = \frac{e^{-in}}{(1 + e^{-in})^2} =  \frac{1}{1 + e^{-in}}  \left( 1 - \frac{1}{1 + e^{-in}} \right) = out * (1 - out) $$
+<div style="text-align:center"><img src="./imgs/latex9.png"></div>
 
 ### Implementation
 
@@ -206,7 +203,7 @@ clf.predict([[2., 2.], [-1., -2.]])
 ```
 > array([1, 0])
 
-Unfortunetely, MLPClassifier was not fit for pur use case because at this moment it only supports Cross-Entropy loss function and cannot be changed by a custom loss function and unlike other model implemented in the library, it does not support class weights. This is unfortunate because our dataset is heavily unbalanced hence the model overfitted after very few iterations returning 0 every time since it was a solution that provided great accuracy fast.
+Unfortunately, MLPClassifier was not fit for pur use case because at this moment it only supports Cross-Entropy loss function and cannot be changed by a custom loss function and unlike other model implemented in the library, it does not support class weights. This is unfortunate because our dataset is heavily unbalanced hence the model overfitted after very few iterations returning 0 every time since it was a solution that provided great accuracy fast.
 
 We had to choose another deep learning library that would be compatible with our pipeline. Keras is a library that focused on creating a simple API for creating deep learning models. In the past it needed to run on top of a backend framework, nowadays is it integrated in Google's TensorFlow. We chose Keras because it offers a wrapper for scikit_learn.
 
