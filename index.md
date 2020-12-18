@@ -424,7 +424,7 @@ Here, we will shed light on Balanced Random Forest and Boosted Decision Tree's i
 
 Here, we plotted the Balanced Random Forest Feature Importances. On the y-axis are the features sorted by rank (at top being the most important features) and on the x-axis is their respective Mean Importance. Around each point, we plotted an error bar equal in length to two $\sigma$ with sigma being the standard deviation of the Gini Importance.
 
-Here is the top 4 features:
+Here are the top 4 features:
 - `sxpsq`: Primary commodity exports/GPD,squared, 
 - `sxpnew`: Primary commodity exports/GPD, 
 - `agexp`: Agricultural raw materials exports as percentage of merchandise exports; WDI, 
@@ -434,12 +434,19 @@ It is interesting to see that these top 4 features are well seperated from other
 
 Because these features are important in the Random Forest model to classify the samples doesn't necessarily mean that these features are important in real life in Civil War Onsets. For instance, really meaningful features explaining Civil War Onsets could be missing because not considered in the data (for instance because it has been overlooked) and as a result the models over-estimate the importance of the other features. Furthermore, this ranking might be heavily influenced by how the Random Forest is inherently built, which has nothing to do how real Civil War Onsets work.
 
-This is why any conclusions regarding 'the most important features in Civil War Onsets' should be taken with a grain of salt. For now, the only thing we can assert is that for predicting Civil War Onsets using RF, these 3 features are the most useful, not more. Further investigations using experts are needed to expand this to the real world.
+This is why any conclusions regarding 'the most important features in Civil War Onsets' should be taken with a grain of salt. For now, the only thing we can assert is that for predicting Civil War Onsets using BRF, these 3 features are the most useful, not more. Further investigations using experts are needed to expand this to the real world. 
 
 ### Boosted Decision Trees
-Loic
 
+We were genuinely impressed when we observed the following result for the Boosted Decision Trees:
 <div> <img src="./imgs/BDT_FI.png"> </div>
+
+Indeed, we were expecting similar results to Random Forest and also smaller error bars. But after thinking about it for a while, we understood that even though both methods use Decision Trees, the way they work is inherently different and therefore might not use the same features to classify the samples. This is also what the ROC curves indicated us after Online Feature Selection where `AdaBoostClassifier` performed worse with RF most important features. This would explain the ranking difference but how about these big error bars? Where does it come from? Our best guess is that `AdaBoostClassifier` doesn't give the same importance to features in all trees, as the following ones are built putting more emphasis on what the previous workers did wrong. 
+
+If we consider again the previously introcuded analogy with the workers building sequentially a table, the first worker will focus on the main features of the table and more or less manage to build it. The second worker however will focus more on what the previous one missed, changing the ranking of the "most important features to worry about" and so on. If we initialize differently the sequence (changing the first worker for instance), the ranking of the "most important features to worry about" for the next workers will change as well. In conclusion, the "most important features" in `AdaBoostClassifier` depends heavily on how it is built.
+
+This is further evidence that whatever the ranking it should be further analyzed before drawing any conclusions as it is hard to quantify how much the model impact the ranking. A solution would be to find multiple type of models and build a ranking for each of them and compare them. If some features are in the top 4 in every single one of the models, it would mean that it is not here because of the model structure but because they have strong correlation with Civil War Onset. However, it is a hard task as most powerful models such as Neural Network do not have easy ways to come up with such rankings. Furthermore, it would not even give us the full story as correlation does not mean causation. In fact, the top 4 features in the model could be influenced by a non-studied variable that is the true cause of Civil War Onsets. In this case, taking political actions to act on the top 4 features of the models would not prevent Civil War Onsets, as the real culprit variable is still untouched.
+
 ## Wrapping Up
 someone please conclude
 To sum up, ... 
