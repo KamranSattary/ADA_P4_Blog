@@ -143,7 +143,13 @@ random_forest = RandomForestClassifier()
 ```
 kamran
 ### Boosted Decision Trees
-Loic
+
+In contrast with Random Forests previously described, Boosted Decision uses Boosting as it relies on training weak learners sequentially instead of in parallel while applying weights to samples to give more importance to previously misclassified ones (AdaBoostClassifier). This is particularly interesting in the case of imbalanced dataset, as events/samples that are hard to predict (here: war onsets) will have their weights increased so that subsequent learners are forced to concentrate their effort on classifying them well. 
+
+What does it mean? In a nutshell, one can image a bunch a manual workers building an item (such as a table for instance) in series, and each subsequent worker in this work chain will focus on building the item from scratch but focusing on what the previous workers did wrong. "Oh, I need be careful not to forget the 4th table leg like the last worker and to not leave a hole in the table's center like the worker before him".
+
+Our hope is that such a method would be more suited to imbalanced data than Random Forests as it indirectly makes it more balanced by applying these weights. 
+
 ```python
 # import decision tree classifier and booster classifier
 from sklearn.ensemble import AdaBoostClassifier
