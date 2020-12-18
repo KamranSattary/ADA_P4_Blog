@@ -120,13 +120,13 @@ boosted_decision_tree = AdaBoostClassifier(base_estimator = DecisionTreeClassifi
 
 Deep learning has seen a huge boost in popularity in the recent years not only in the scientific comunity, but in the mainstream as well. The main applications that contributed to its success are computer vision, where self driving cars have seen a huge mediatic attention and natural language processing(NLP) that reached the audience in terms of voice assistants. The building block that stays at the foundation of this domain is the neural network, but what exactly are these?
 
-Artificial Neural Networks(abbreviated ANN) or usually simply Neural Networks(NN) is another machine learning technique that can be trained in supervised or unsupervised manner and as the name suggests was inspired by the network of neurons from mammals' brains, more specifically, the human brain. The terms is not new, dating back to 1940s, but the advancement in GPU has provided reasearchers with the ability to train more complex models.
+Artificial Neural Networks(abbreviated ANN) or usually simply Neural Networks(NN) is another machine learning technique that can be trained in supervised or unsupervised manner and as the name suggests was inspired by the network of neurons from mammal's brain, more specifically, the human brain. The terms is not new, dating back to 1940s, but the advancement in GPU provided reasearchers with the ability to train more complex models.
 
-Let's dive deeper into the subject. Neural networks are multi-layer networks of neurons. Below we can see a network used for classification and one for regression.
+Let's dive deeper into the subject. Neural networks are multi-layer networks of neurons. Bellow we can see a network used for classification and one for regression.
 
 
 <figure align="center">
-  <img src="./imgs/multilayerperceptron_network.png"/>
+  <img src="./imgs/mlp.png"/>
   <figcaption align="center">One hidden layer MLP | Source: https://scikit-learn.org/stable/modules/neural_networks_supervised.html</figcaption>
 </figure>
 
@@ -207,6 +207,8 @@ Unfortunately, MLPClassifier was not fit for pur use case because at this moment
 
 We had to choose another deep learning library that would be compatible with our pipeline. Keras is a library that focused on creating a simple API for creating deep learning models. In the past it needed to run on top of a backend framework, nowadays is it integrated in Google's TensorFlow. We chose Keras because it offers a wrapper for scikit_learn.
 
+The Keras wrapper takes as argument a function that returns the model that needs to be wrapped and a varibale sized list of arguments that can be applied either for the build function or the wrapper class. Creating a densily connected model in Keras is very easy, via the Sequential class that accepts a list of layers, or like in the alternative function each layer can be addedat any point in time in a sequential manner before the compile method is called. The model can then be configured, selecting the loss function, optimization algorithm or even metrics.
+
 ```python
 def make_model(nr_features, dropout1, dropout2, optimizer, output_bias=None):
     if output_bias is not None:
@@ -229,6 +231,24 @@ def make_model(nr_features, dropout1, dropout2, optimizer, output_bias=None):
 
 def NeuralNetwork(build_fn, **kwargs):
     return keras.wrappers.scikit_learn.KerasClassifier(build_fn=build_fn, **kwargs)
+    
+def make_model_alternate(nr_features, dropout1, dropout2, optimizer, output_bias=None):
+    if output_bias is not None:
+        output_bias = tf.keras.initializers.Constant(output_bias)
+
+    model = keras.Sequential()
+    model.add(keras.layers.Dense(16, activation='relu', input_shape=(nr_features,)))
+    model.add(keras.layers.Dropout(dropout1))
+    model.add(keras.layers.Dense(16, activation='relu'))
+    model.add(keras.layers.Dropout(dropout2))
+    model.add(keras.layers.Dense(1, activation='sigmoid', bias_initializer=output_bias))
+
+    model.compile(
+        optimizer=optimizer,
+        loss=keras.losses.BinaryCrossentropy())
+
+    return model
+    
 ```
 
 The wrapper provides the model with the same API, or at very least a compatible API therefore we can easily use it in our Pipelines and Grid search that were discussed earlier.
