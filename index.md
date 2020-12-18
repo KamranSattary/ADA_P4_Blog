@@ -438,7 +438,11 @@ As a result, we see here that for really simple models (such as K-Nearest Neighb
 
 ### Offline Feature Selection (Anova & Chi)
 <div> <img src="./imgs/roc_off_fs.png"> </div>
-razvan
+
+We can observe that the models that were affected the most by this technique were Boosted Decision Trees and Support Vector Machines in a way that impacts the overall shape of the graph. On the other hand, the Balanced Random Forest has seen a decrease in the ROC score from 0.928 to 0.916, but is not noticeable with the naked eye. During the fe phase we have kept 30% from each category of features, but the numerical features outnumbers the categorical, so the elimination was not exactly fair. The fact that the Balanced Random Forest did not lose so much of its AUC compared to the other two models may indicate that it uses fewer variables than the rest or that the other two rely on features that were deemed less important.
+
+On the other hand, KNN and NN got a small boost to the AUC score. To an untrained eye it may seem plausible that offline feature selection favors models that contain NN in their name and discriminates the others. It may be true, who knows? A more logical explanation, that was given in the previous section, is that KNN suffers from "the curse of dimensionality" so reducing the overall numbers of features would benefit it while the NN could suffer from overfitting so reducing the number of features help with generalization.
+
 
 ## The value of interpretable models 
 
