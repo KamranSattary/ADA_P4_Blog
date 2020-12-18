@@ -462,7 +462,9 @@ It is interesting to see that these top 4 features are well seperated from other
 
 Because these features are important in the Random Forest model to classify the samples doesn't necessarily mean that these features are important in real life in Civil War Onsets. For instance, really meaningful features explaining Civil War Onsets could be missing because not considered in the data (for instance because it has been overlooked) and as a result the models over-estimate the importance of the other features. Furthermore, this ranking might be heavily influenced by how the Random Forest is inherently built, which has nothing to do how real Civil War Onsets work.
 
-This is why any conclusions regarding 'the most important features in Civil War Onsets' should be taken with a grain of salt. For now, the only thing we can assert is that for predicting Civil War Onsets using BRF, these 3 features are the most useful, not more. Further investigations using experts are needed to expand this to the real world. 
+It is also worth noting that the paper used a different metric to rank the Random Forest features and got a totally different ranking (our first features is their last!). 
+
+This is why any conclusions regarding 'the most important features in Civil War Onsets' should be taken with a grain of salt. For now, the only thing we can assert is that for predicting Civil War Onsets using this BRF, these 3 features are the most useful, not more. Further investigations using experts are needed to expand this to the real world. 
 
 ### Boosted Decision Trees
 
@@ -476,7 +478,9 @@ If we consider again the previously introcuded analogy with the workers building
 This is further evidence that whatever the ranking it should be further analyzed before drawing any conclusions as it is hard to quantify how much the model impact the ranking. A solution would be to find multiple type of models and build a ranking for each of them and compare them. If some features are in the top 4 in every single one of the models, it would mean that it is not here because of the model structure but because they have strong correlation with Civil War Onset. However, it is a hard task as most powerful models such as Neural Network do not have easy ways to come up with such rankings. Furthermore, it would not even give us the full story as correlation does not mean causation. In fact, the top 4 features in the model could be influenced by a non-studied variable that is the true cause of Civil War Onsets. In this case, taking political actions to act on the top 4 features of the models would not prevent Civil War Onsets, as the real culprit variable is still untouched.
 
 ## Wrapping Up
-someone please conclude
-To sum up, ... 
+
+To sum up, predicting Civil War Onset is a tedious task but the models implemented here give really encouraging results. Our Balanced Random Forest model even performed better (AUC score of 0.9284 compared to 0.91) than the Random Forest of the original paper. However, concerning variable importances, we obtained a totally different ranking. This is an issue because it sheds light on how unreliable it is to use such metrics and incite us to make conclusions about variable importances with care. 
+
+With this sad note, let's not forget that having different explanations for Civil War Onsets is not a bad thing, as it allows us to better grasp how complex and singular of an event it is. Even though it might not offer a miracle solution to solve these destructive events, it will surely help experts in their research. 
 
 Thank you for reading our blog! 
