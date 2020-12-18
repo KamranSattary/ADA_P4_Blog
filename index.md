@@ -157,12 +157,11 @@ Deep learning has seen a huge boost in popularity in the recent years not only i
 
 Artificial Neural Networks(abbreviated ANN) or usually simply Neural Networks(NN) is another machine learning technique that can be trained in supervised or unsupervised manner and as the name suggests was inspired by the network of neurons from mammal's brain, more specifically, the human brain. The terms is not new, dating back to 1940s, but the advancement in GPU provided reasearchers with the ability to train more complex models.
 
-Let's dive deeper into the subject. Neural networks are multi-layer networks of neurons. Bellow we can see a network used for classification and one for regression.
-
+Let's dive deeper into the subject. Neural networks are multi-layer networks of neurons. Bellow we can see a network used for classification.
 
 <figure align="center">
-  <img src="./imgs/mlp.png"/>
-  <figcaption align="center">One hidden layer MLP | Source: https://scikit-learn.org/stable/modules/neural_networks_supervised.html</figcaption>
+  <img src="./imgs/classif_nn.png"/>
+  <figcaption align="center">A single-layer fully-connected neural network used for classification| Source: https://towardsdatascience.com/coding-up-a-neural-network-classifier-from-scratch-977d235d8a24</figcaption>
 </figure>
 
 
@@ -177,7 +176,7 @@ The connection between neurons is represented by arrows and indicates the normal
 
 Our model has 2 inputs and a two neurons hidden layer. As such, connecting Input Layer to Hidden Layer 1 requires 4 connections. The mathematical expression of first neuron in the first layer is the following:
 
-<div style="text-align:center"><img src="./imgs/latex1.png"></div>
+<div style="text-align:center "><img src="./imgs/latex1.png"></div>
 
 We can use the matrix notation for the Hidden Layer 1:
 
@@ -286,6 +285,8 @@ def make_model_alternate(nr_features, dropout1, dropout2, optimizer, output_bias
     return model
     
 ```
+
+Dropout is a regularization method used for neural networks tha probabilistically drops out nodes in the networks during training. We have selected the best dropout values and also the best optimization aalgorithm using grid search.
 
 The wrapper provides the model with the same API, or at very least a compatible API therefore we can easily use it in our Pipelines and Grid search that were discussed earlier.
 
