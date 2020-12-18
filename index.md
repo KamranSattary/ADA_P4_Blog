@@ -199,7 +199,8 @@ K-Nearest Neighbors (abbreviated KNN) is a supervised machine learning technique
 
 <figure align="center">
   <img src="./imgs/knn.png"/>
-  <figcaption align="center">KNN Illustration | [Source](https://www.datacamp.com/community/tutorials/k-nearest-neighbor-classification-scikit-learn)</figcaption>
+  <figcaption align="center">KNN Illustration | <pre> <a href="https://www.datacamp.com/community/tutorials/k-nearest-neighbor-classification-scikit-learn">Source</a></pre>
+  </figcaption>
 </figure>
 
 
