@@ -328,7 +328,7 @@ clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
 clf.fit(X, y)
 clf.predict([[2., 2.], [-1., -2.]])
 ```
-> array([1, 0])
+\> array([1, 0])
 
 Unfortunately, MLPClassifier was not fit for pur use case because at this moment it only supports Cross-Entropy loss function and cannot be changed by a custom loss function and unlike other model implemented in the library, it does not support class weights. This is unfortunate because our dataset is heavily unbalanced hence the model overfitted after very few iterations returning 0 every time since it was a solution that provided great accuracy fast.
 
