@@ -404,8 +404,6 @@ Dropout is a regularization method used for neural networks tha probabilisticall
 
 The wrapper provides the model with the same API, or at very least a compatible API therefore we can easily use it in our Pipelines and Grid search that were discussed earlier.
 
-
-## Comparing Model Performance with Roc-Auc Curves
 ## Comparing Model Performance with Roc-Auc Curves
 In this section, we present our methodology, having introduced the workings of the multiplicity of the methods employed, to compare each of our methods predictive ability when faced with imbalanced data. For each of these models, we perform a grid search on a subset of their parameters to allow them to best perform. For K-Nearest Neighbors this includes a variety of kernels, degrees in the case of the polynomial one, and distances provided by `scikit-learn`'s classifier. Meanwhile for Random Forests, these are an entirely new set of parameters to search upon, namely the maximal depth, the downsampling strategy, and the number of constituent trees. This approach was adopted towards all models in order to let them best perform in their comparisons, and this hyperparameter optimization remains a shortcoming of Muchlinski et. al which we proposed a solution for, with our above example of GridSearchCV usage.
 
