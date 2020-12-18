@@ -330,7 +330,7 @@ clf.predict([[2., 2.], [-1., -2.]])
 ```
 > array([1, 0])
 
-Unfortunately, MLPClassifier was not fit for pur use case because at this moment it only supports Cross-Entropy loss function and cannot be changed by a custom loss function and unlike other model implemented in the library, it does not support class weights. This is unfortunate because our dataset is heavily unbalanced hence the model overfitted after very few iterations returning 0 every time since it was a solution that provided great accuracy fast.
+Unfortunately, MLPClassifier was not fit for our use case because at this moment it only supports Cross-Entropy loss function and cannot be changed by a custom loss function and unlike other models implemented in the library, it does not support class weights. This is unfortunate because our dataset is heavily unbalanced hence the model overfitted after very few iterations returning 0 every time since it was a solution that provided great accuracy fast.
 
 We had to choose another deep learning library that would be compatible with our pipeline. Keras is a library that focused on creating a simple API for creating deep learning models. In the past it needed to run on top of a backend framework, nowadays is it integrated in Google's TensorFlow. We chose Keras because it offers a wrapper for scikit_learn.
 
