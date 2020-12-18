@@ -412,13 +412,19 @@ As a result, we see here that for really simple models (such as K-Nearest Neighb
 <div> <img src="./imgs/roc_off_fs.png"> </div>
 razvan
 ## The value of interpretable models 
-Loic
+
+Sometimes, models are sought not only for their predictive power, but also for their interpretability. This is especially true in certain domains where a humanly understandable justification is required. Here, it is the case as the goal is to give tools to governers to prevent Civil War from happening. These tools should not only tell the politics if a Civil War is likely to happen (predictive power), but also on what to focus/act (interpretability).
+
+Here, we will shed light on Balanced Random Forest and Boosted Decision Tree's interpretability by using a method to rank Variables Importances using a metric called Gini Importance, being the (normalized) total reduction of the criterion brought by that feature. In short, the more the feature seperates well the data (most 0's on one side, most 1's on the other side), the higher the Gini importance. 
+
 ### Random Forest
 Loic
 <div> <img src="./imgs/BRF_FI.png"> </div>
 
 ### Boosted Decision Trees
 Loic
+
+<div> <img src="./imgs/BDT_FI.png"> </div>
 ## Wrapping Up
 someone please conclude
 To sum up, ... 
