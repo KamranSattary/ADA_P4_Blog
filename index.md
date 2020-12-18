@@ -214,7 +214,7 @@ The gradient of a function is calculated by:
 
 The derivative in a neural network is not always so easy at first glance to optimize as it would imply lots of recomputations. Backpropagation solves the problem by applying the chain rule when it calculates the gradient of the loss function. It iterates backwards, from the last layer, one layer at a time avoiding redundant calculations.
 
- As an example let's consider a perceptron(no hidden layer) with MSE as the cost function. Then using the cahin rule:
+ As an example let's consider a perceptron(no hidden layer) with MSE as the cost function. Then using the chain rule:
 
 <div style="text-align:center"><img src="./imgs/latex6.png"></div>
 
