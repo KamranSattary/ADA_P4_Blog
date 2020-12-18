@@ -67,7 +67,7 @@ pipe_svm = Pipeline([('std', my_std),('rfe', rfe),('clf', my_svm)])
 razvan
 
 ## Grid Search
-Moving onwards, before speaking about model-specifics and their own intricacies, particular emphasis is afforded to clarifying an approach towards deriving for each different one, their best performing (according to some metric which also needs to be chosen depending on a user-defined objective!) parameters. Indeed, hyperparameter optimization remains a complex and deep research field, though an often reoccuring suggestion remains to couple Cross-Validation with a search across all combinations of parameters, called Grid Search. Then, the highest scoring parameters are determined best for the particular mode. As combinations between parameters increase exponentially as separate values are added to the grid, computational limits must too be considered, with some models already incurring an expensive cost for even single executions! While this is not the case due to the simplicity of the models used in this notebook, and a nifty parallelization of grid search which `scikit-learn` allows for which is exemplified below, an alternative is random search. Random search does precisely what its name suggests, it randomly decides upon a subset of combinations to trial, which has been shown increased efficiency on a variety of learning algorithms and data sets [here](https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf).
+Moving onwards, before speaking about model-specifics and their own intricacies, particular emphasis is afforded to clarifying an approach towards deriving for each different one, their best performing parameters (according to some metric which also needs to be chosen depending on a user-defined objective!). Indeed, hyperparameter optimization remains a complex and deep research field, though an often reoccuring suggestion remains to couple Cross-Validation with a search across all combinations of parameters, called Grid Search. Then, the highest scoring parameters are determined best for the particular mode. As combinations between parameters increase exponentially as separate values are added to the grid, computational limits must too be considered, with some models already incurring an expensive cost for even single executions! While this is not the case due to the simplicity of the models used in this notebook, and a nifty parallelization of grid search which `scikit-learn` allows for which is exemplified below, an alternative is random search. Random search does precisely what its name suggests, it randomly decides upon a subset of combinations to trial, which has been shown increased efficiency on a variety of learning algorithms and data sets [here](https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf).
 
 Here we illustrate the coupling of a `scikit-learn` and a pipeline. 
 
@@ -164,6 +164,7 @@ Let's dive deeper into the subject. Neural networks are multi-layer networks of 
   <img src="./imgs/multilayerperceptron_network.png"/>
   <figcaption align="center">One hidden layer MLP | Source: https://scikit-learn.org/stable/modules/neural_networks_supervised.html</figcaption>
 </figure>
+
 
 Let's analyse its structure, from left to right:
 
