@@ -177,9 +177,9 @@ The gradient of a function is calculated by:
 
 $$ \frac{\partial f}{\partial \textbf{X}} = \begin{bmatrix}\frac{\partial f}{\partial X_1}, .., \frac{\partial f}{\partial X_n}\end{bmatrix} $$
 
-### BAckpropagation
+### Backpropagation
 
-The derivative in a neural network is not so easy to achieve because it would imply lots of recomputations. Backpropagation solves the problem by applying the chain rule when it calculates the gradient of the loss function. It iterates backwards, from the last layer, one layer at a time avoiding redundant calculations.
+The derivative in a neural network is not always so easy at first glance to optimize as it would imply lots of recomputations. Backpropagation solves the problem by applying the chain rule when it calculates the gradient of the loss function. It iterates backwards, from the last layer, one layer at a time avoiding redundant calculations.
 
  As an example let's consider a perceptron(no hidden layer) with MSE as the cost function. Then using the cahin rule:
 
