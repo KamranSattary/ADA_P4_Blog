@@ -177,7 +177,7 @@ The gradient of a function is calculated by:
 
 $$ \frac{\partial f}{\partial \textbf{X}} = \begin{bmatrix}\frac{\partial f}{\partial X_1}, .., \frac{\partial f}{\partial X_n}\end{bmatrix} $$
 
-### BAckpropagation
+### Backpropagation
 
 The derivative in a neural network is not so easy to achieve because it would imply lots of recomputations. Backpropagation solves the problem by applying the chain rule when it calculates the gradient of the loss function. It iterates backwards, from the last layer, one layer at a time avoiding redundant calculations.
 
@@ -192,6 +192,50 @@ $$\frac{\partial in}{\partial w} = \frac{\partial (w_1i_1 + ... + w_n*i_n)}{\par
 $$ \frac{\partial out}{\partial in} = \frac{\partial }{\partial in}\frac{1}{1 + e^{-in}} = \frac{e^{-in}}{(1 + e^{-in})^2} =  \frac{1}{1 + e^{-in}}  \left( 1 - \frac{1}{1 + e^{-in}} \right) = out * (1 - out) $$
 
 ### Implementation
+
+Scikit learn provides support for Neural Networks via the  [MLPRegressor](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#regression) and [MLPClassifier](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification) classes. The following is an example that depicts how to train the model and predict on a small dataset.
+
+```python
+from sklearn.neural_network import MLPClassifier
+X = [[0., 0.], [1., 1.]]
+y = [0, 1]
+clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+	                    hidden_layer_sizes=(5, 2), random_state=1)
+clf.fit(X, y)
+clf.predict([[2., 2.], [-1., -2.]])
+```
+> array([1, 0])
+
+Unfortunetely, MLPClassifier was not fit for pur use case because at this moment it only supports Cross-Entropy loss function and cannot be changed by a custom loss function and unlike other model implemented in the library, it does not support class weights. This is unfortunate because our dataset is heavily unbalanced hence the model overfitted after very few iterations returning 0 every time since it was a solution that provided great accuracy fast.
+
+We had to choose another deep learning library that would be compatible with our pipeline. Keras is a library that focused on creating a simple API for creating deep learning models. In the past it needed to run on top of a backend framework, nowadays is it integrated in Google's TensorFlow. We chose Keras because it offers a wrapper for scikit_learn.
+
+```python
+def make_model(nr_features, dropout1, dropout2, optimizer, output_bias=None):
+    if output_bias is not None:
+        output_bias = tf.keras.initializers.Constant(output_bias)
+
+    model = keras.Sequential([
+        keras.layers.Dense(16, activation='relu', input_shape=(nr_features,)),
+        keras.layers.Dropout(dropout1),
+        keras.layers.Dense(16, activation='relu'),
+        keras.layers.Dropout(dropout2),
+        keras.layers.Dense(1, activation='sigmoid', bias_initializer=output_bias)
+    ])
+
+    model.compile(
+        optimizer=optimizer,
+        loss=keras.losses.BinaryCrossentropy())
+
+    return model
+
+
+def NeuralNetwork(build_fn, **kwargs):
+    return keras.wrappers.scikit_learn.KerasClassifier(build_fn=build_fn, **kwargs)
+```
+
+The wrapper provides the model with the same API, or at very least a compatible API therefore we can easily use it in our Pipelines and Grid search that were discussed earlier.
+
 
 ## Comparing Model Performance with Roc-Auc Curves
 explain how rocauc curves work here 
