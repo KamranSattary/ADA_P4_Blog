@@ -66,8 +66,43 @@ pipe_svm = Pipeline([('std', my_std),('rfe', rfe),('clf', my_svm)])
 ### Chi & ANOVA
 razvan
 
-### Grid Search
-kamran
+## Grid Search
+Moving onwards, before speaking about model-specifics and their own intricacies, particular emphasis is afforded to clarifying an approach towards deriving for each different one, their best performing (according to some metric which also needs to be chosen depending on a user-defined objective!) parameters. Indeed, hyperparameter optimization remains a complex and deep research field, though an often reoccuring suggestion remains to couple Cross-Validation with a search across all combinations of parameters, called Grid Search. Then, the highest scoring parameters are determined best for the particular mode. As combinations between parameters increase exponentially as separate values are added to the grid, computational limits must too be considered, with some models already incurring an expensive cost for even single executions! While this is not the case due to the simplicity of the models used in this notebook, and a nifty parallelization of grid search which `scikit-learn` allows for which is exemplified below, an alternative is random search. Random search does precisely what its name suggests, it randomly decides upon a subset of combinations to trial, which has been shown increased efficiency on a variety of learning algorithms and data sets [here](https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf).
+
+Here we illustrate the coupling of a `scikit-learn` and a pipeline. 
+
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import StandardScaler
+
+n_jobs = 6 # number of parallel processes to use!
+
+# folds and scoring desired to compare parameters
+k_folds = 5
+scoring = 'f1'
+
+# define parameter grid
+trees = [50,100,150]
+learning_rates = [0.1,0.5,1]
+max_depth = [7,8,9]
+
+# note the naming convention, clf__ to attribute parameters to the clf__ named pipeline step
+param_grid = {'clf__n_estimators' : trees,
+              'clf__learning_rate' :  learning_rates,
+              'clf__base_estimator__max_depth' : max_depth}
+
+# create pipeline upon which search should occur
+my_bdt = AdaBoostClassifier(base_estimator = DecisionTreeClassifier(), random_state=0)
+my_std = StandardScaler()
+
+pipe = Pipeline([('std',my_std), ('clf',my_bdt)])
+
+grid_search = GridSearchCV(pipe, param_grid, cv=k_folds, scoring=scoring, verbose=1, n_jobs=n_jobs)
+```
+Then utilizing data, this grid_search can be fit utilizing its `fit` method, and then the best parameters can be ranked and retrieved according to associated scores! Full-fledged integration of Cross validation steps and grid search as such is extremely easy in `scikit-learn`, allowing for even simple incorporation of even non `scikit-learn` algorithms such as `keras` neural networks also evidenced in this notebook.
 
 ## Understanding the inner-workings of Classification Methods 
 As data varies widely in its shape and form, a first crucial step when employing statistical models, is understanding in depth how they are constructed and are able to use data to *learn*. Here we clarify how the five models we compare function in order to better understand their strengths, but also weaknesses!
