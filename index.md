@@ -196,6 +196,16 @@ As data varies widely in its shape and form, a first crucial step when employing
 ### K-Nearest Neighbors
 K-Nearest Neighbors (abbreviated KNN) is a supervised machine learning technique which, as its name suggests, uses closeby neighbors to classify observations. As such, the data itself serves in essence as the model, with few parameters available for tuning, which can both be a boon or bane. Evaluating proximity is one of the first available parameters, and allowing for a variety of metrics to evaluate the distance between observations, including Manhattan Distance, Euclidean Distance, Chebychev Distance, Hamming Distance, Cosine Similarity (utilizing Cosine distance), and more. Each of these presents both advantages and disadvantages in their use, with some more or less sensitive to outliers, while others are orientation rather than magnitude based such as Cosine Distance which is preferred in settings where direction is more influential than magnitude. 
 
+
+<figure align="center">
+  <img src="./imgs/knn.png"/>
+  <figcaption align="center">KNN Illustration | [Source](https://www.datacamp.com/community/tutorials/k-nearest-neighbor-classification-scikit-learn)</figcaption>
+</figure>
+
+
+
+The above figure illustrates how this algorithm allows for inference, with a k value equal to 1. This parameter being a principal hyperparameter available for tuning, and determinable via aid of grid search. The following illustrates the quick adoption of this algorithm which `scikit-learn` provides. 
+
 ```python
 # import classifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -203,8 +213,17 @@ from sklearn.neighbors import KNeighborsClassifier
 # initialise it
 nearest_neighbors = KNeighborsClassifier()
 ```
-kamran
+
 ### Support Vector Machines
+Support Vector Machines were included in this blog for the very reason that they are conceptually often misunderstood with overfrequent confusion as to their difference with Logistic Regressions which in essence originate from the idea proposed by linear regressions. On the other hand, Support Vector Machines are much more geometrically motivated as explained [here](https://stats.stackexchange.com/questions/95340/comparing-svm-and-logistic-regression) and [here](https://www.robots.ox.ac.uk/~cvrg/bennett00duality.pdf). 
+
+
+<figure align="center">
+  <img src="./imgs/svm.png"/>
+  <figcaption align="center">KNN Illustration | [Source](https://towardsdatascience.com/support-vector-machine-simply-explained-fee28eba5496)</figcaption>
+</figure>
+
+Above is illustrated the general concept surrounding Support Vector Machines. This algorithm constructs support vectors (hence the name), which each aim to support the widest margin possible between classes in a resulting hyperplane. This maximisation of the margin is not motivated in the same way in contrast with the logistic regression although a separating line does conceedingly allow for the aforementioned confusion.
 
 ```python
 # Import support vector machine classifier 
@@ -213,8 +232,10 @@ from sklearn.svm import SVC
 # Define our two steps and pass them into the pipeline
 my_svm = SVC() 
 ```
-kamran
+
 ### Random Forests
+Random Forest, is an ensemble learning method, building upon the individual concept of decision trees, and utilizing averaging across an often large number of decision trees in order to provide increasing model predictive power. This is rather intuitive, as the forming of an ensemble to make decisions enables a decrease in bias of individual constituents, as each tree's decision is no longer final, and its individual errors may be compensated for by the group! Coupling this with a different set of features for constituent trees to train upon, as well as sampling observations randomly via bootstrapping, provides for increased robustness and invariance of the model, in favor of generalization towards out-of-sample data. Therefore, by construction, the model trains itself to be robust. 
+Increased robustness may nonetheless be afforded to the training of the model, particularly in how each tree samples across the classes it should predict. Downsampling, in order to force the tree to attribute importance to both the minority and majority class is illustrated in the following code block, and the `imbalanced-learn` python library is particularly helpful in allowing for an integration of this downsampling into the `scikit-learn` Random Forest Classifier.
 
 ```python
 # import both random forest classifiers
@@ -225,7 +246,7 @@ from sklearn.ensemble import RandomForestClassifier
 balanced_random_forest = BalancedRandomForestClassifier(sampling_strategy = 1/2) # note the ability for integrated downsampling!
 random_forest = RandomForestClassifier()
 ```
-kamran
+
 ### Boosted Decision Trees
 
 In contrast with Random Forests previously described, Boosted Decision uses Boosting as it relies on training weak learners sequentially instead of in parallel while applying weights to samples to give more importance to previously misclassified ones (AdaBoostClassifier). This is particularly interesting in the case of imbalanced dataset, as events/samples that are hard to predict (here: war onsets) will have their weights increased so that subsequent learners are forced to concentrate their effort on classifying them well. 
