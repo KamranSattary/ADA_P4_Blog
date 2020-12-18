@@ -392,7 +392,22 @@ In this part, we observe the
 kamran
 ### Online Feature Selection (Recursive Feature Elimination)
 <div> <img src="./imgs/roc_on_fs.png"> </div>
-loic
+Previously, we have seen the ROC-AUC without Feature Selection. How did Online Feature Selection influenced the methods' predictive power?
+
+Let's look at the result, one method at a time and see what's going on here:
+
+- K-Nearest Neighbors still has the same overall shape, but went from an AUC Score of 0.6629 to 0.6877. This change is significant, and also perfectly understandable. In fact, one of K-Nearest Neightbors greatest enemy is "the curse of dimensionality". Simply put, the more dimensions, the further away are samples from each other. By reducing the dimensionality and only keeping the relevant ones, two samples that are alike are closer together than without dimensionality reduction, thus improving the overall algorithm predictive power.
+
+- Support Vector Machine has not exactly the same overall shape (flat line around [0.3,0.5]) and thus suffered a bit in terms of AUC Score (went from 0.8297 to 0.8178). Why is that? It could be explained by the fact that Support Vector Machine revolves around finding an hyperplane to seperate the data in two (0's on one side, 1's on the other side). Higher dimensions mean more degree of freedom to fit this hyperplane. However, one can note that the dimensionality reduction did not affect too much the AUC Score, meaning that the features selected do a good job in seperating the two groups (reassuring us in the fact that the features from the online feature selection are not only useful on other methods such as Support Vector Machine, but also relevant in terms of "Variable Importance" analysis: see "The value of interpretable models" further down).
+
+- Neural Network in the other hand beneficiated from the Online Feature Selection as its AUC Score went from 0.826 to 0.8366. This could be explained from the following rule of thumb: The more complex the model, the more it tends to overfit. Here, with N being the number of samples (fixed), the more features (D --> D' with D'>D ie: the more complex it is), the more prone the Neural Network is to overfit, thus affecting its predictive power on unseen data.
+
+- Unlike previously where Boosted Decision Trees and Balanced Random Forest were almost alike (0.923 and 0.9284 in AUC Score), here Boosted Decision Trees took a toll and saw its AUC Score decrease to 0.8983. Why is that? This one is a bit harder to analyze. However, we can conclude something pretty interesting from this: as the Online Feature Selection was done using the Balanced Random Forest, the fact that Boosted Decision Trees performs significantly worse with these features indicate that both method do not use the same features in order to make the predictions (see "The value of interpretable models" where we compare the feature importance ranking of both method) and thus sheds light on the fact that Variable Importances deduced from models can differ heavily and thus any conclusion regarding the real relevance of a feature in Civil War Onset should be taken carefully.
+
+- Balanced Random Forest saw almost no changes with Online Feature Selection (0.9284 to 0.9297, being an unsignificant increase). This is expected, as Online Feature Selection is the method of recursively eliminating features without impacting the model performance. 
+
+As a result, we see here that for really simple models (such as K-Nearest Neighbors) and really complex models (Neural Network), using Online Feature Selection helps as it fights against the curse of dimensionality (for KNN) and prevents overfitting (NN). For the other models, either it leaves them unchanged (like Balanced Random Forest), or decrease slightly their performance because they did not use the same variables as BRF to make their predictions (BDT) or work better in high dimensions (SVM).
+
 ### Offline Feature Selection (Anova & Chi)
 <div> <img src="./imgs/roc_off_fs.png"> </div>
 razvan
